@@ -1,15 +1,15 @@
 import AuthFormSkeleton from "@/components/auth/auth-form-skeleton"
-import RegisterForm from "@/components/auth/register/register-form"
+import SignInForm from "@/components/auth/sign-in/sign-in-form"
 import { Suspense } from "react"
 
-function RegisterPage() {
+function SignInPage() {
 	return (
 		<div className="h-[calc(100vh-62px)] px-[10%] lg:px-[30%] py-[5%] flex justify-center items-center">
 			<Suspense fallback={<AuthFormSkeleton />}>
-				<RegisterForm />
+				<SignInForm />
 			</Suspense>
 		</div>
 	)
 }
 
-export default RegisterPage
+export default SignInPage

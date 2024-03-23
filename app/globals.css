@@ -6,6 +6,9 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --olive: rgb(0,184,163);
+  --yellow: rgb(255, 192, 30);
+  --red: rgb(255, 55, 95);
 }
 
 @media (prefers-color-scheme: dark) {
