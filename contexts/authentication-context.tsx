@@ -1,7 +1,8 @@
 "use client"
 
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useContext, useEffect, useState } from "react"
 import * as jose from "jose"
+import verifyUser from "@/actions/auth/verify"
 
 interface UserProps {
 	id?: string
@@ -12,7 +13,7 @@ interface UserProps {
 }
 
 interface AuthenticationContextProps {
-	user: UserProps
+	user?: UserProps | null
 	isUserLoaded: boolean
 	credentials?: string | null
 	logout: () => void
@@ -20,7 +21,7 @@ interface AuthenticationContextProps {
 }
 
 const AuthenticationContext = createContext<AuthenticationContextProps>({
-	user: {},
+	user: null,
 	isUserLoaded: false,
 	credentials: null,
 	logout() {},
@@ -32,7 +33,7 @@ const useAuthentication = () => {
 }
 
 const AuthenticationContextProvider = (props: { children: React.ReactNode }) => {
-	const [user, setUser] = useState<UserProps>({})
+	const [user, setUser] = useState<UserProps | null>()
 	const [credentials, setCredentials] = useState<string | null>()
 	const [isUserLoaded, setIsUserLoaded] = useState(false)
 
@@ -46,15 +47,24 @@ const AuthenticationContextProvider = (props: { children: React.ReactNode }) => 
 	function loadUserFromCredentials(creds: string) {
 		const decryptedData = jose.decodeJwt(creds) as jose.JWTPayload & UserProps
 
-		if (decryptedData.exp && decryptedData.exp < new Date().getTime()) {
+		if (decryptedData.exp && decryptedData.exp < new Date().getTime() / 1000) {
 			return
 		}
-
+		console.log("HERE")
 		setIsUserLoaded(true)
 		setUser(decryptedData)
 		setCredentials(creds)
 		localStorage.setItem("__auth__", creds)
 	}
+
+	useEffect(() => {
+		const localToken = localStorage.getItem("__auth__")
+		if (!isUserLoaded && localToken) {
+			verifyUser("Bearer " + localToken).then(() => {
+				loadUserFromCredentials(localToken)
+			})
+		}
+	}, [])
 
 	return (
 		<AuthenticationContext.Provider

@@ -4,15 +4,19 @@ import InputField from "@/components/auth/input-field"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import SubmitButton from "@/components/auth/submit-button"
+import signInUser from "@/actions/auth/sign-in"
+import { useAuthentication } from "@/contexts/authentication-context"
 
 function MainForm() {
 	const router = useRouter()
+	const { loadUserFromCredentials } = useAuthentication()
 
 	async function onSubmit(data: FormData) {
-		registerUser(data)
-			.then(() => {
-				toast.success("Successfully registered!")
-				router.push("/auth/sign-in")
+		signInUser(data)
+			.then((token) => {
+				toast.success("Successfully signed in!")
+				loadUserFromCredentials(token)
+				router.push("/challenges")
 			})
 			.catch((err) => toast.error(err.message))
 	}

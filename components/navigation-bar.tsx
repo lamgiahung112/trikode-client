@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { FunctionComponent } from "react"
 import NavigationBarLink from "./navigation-bar-link"
+import NavigationBarUserLink from "./navigation-bar-user-link"
 
 interface NavigationBarProps {}
 
@@ -16,15 +17,7 @@ const NavigationBar: FunctionComponent<NavigationBarProps> = () => {
 				<NavigationBarLink href="/profile" title="Profile" />
 			</div>
 			<div className="flex items-center justify-between">
-				<div className="flex gap-x-4 text-neutral-400 text-sm">
-					<div className="hover:text-white">
-						<Link href="/auth/register">Register</Link>
-					</div>
-					<div>or</div>
-					<div className="hover:text-white">
-						<Link href="/auth/sign-in">Sign In</Link>
-					</div>
-				</div>
+				<NavigationBarUserLink />
 			</div>
 		</div>
 	)

@@ -14,6 +14,7 @@ async function signInUser(data: FormData) {
 			if (!res.isSuccess) {
 				throw new Error(res.message)
 			}
+			return res.payload
 		})
 }
 

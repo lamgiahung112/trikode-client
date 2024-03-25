@@ -11,6 +11,7 @@ async function verifyUser(token: string) {
 			if (!res.isSuccess) {
 				throw new Error(res.message)
 			}
+			return res.payload
 		})
 }
 
