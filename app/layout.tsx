@@ -23,8 +23,8 @@ export default function RootLayout({
 			<AuthenticationContextProvider>
 				<body className={`${figtree.className} h-[100vh] text-white`}>
 					<NavigationBar />
-					<ToastContainer />
-					<div className="w-full min-h-full bg-neutral-900 pt-0 md:pt-[62px]">
+					<ToastContainer position="top-center" />
+					<div className="w-full min-h-full bg-neutral-900 pt-0 md:pt-[60px]">
 						{children}
 					</div>
 				</body>
