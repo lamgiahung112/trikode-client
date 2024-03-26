@@ -1,4 +1,5 @@
 import DropdownSingleInput from "@/components/challenges/dropdown-single-input"
+import DropdownTagInput from "@/components/challenges/dropdown-tag-input"
 import SearchBar from "@/components/challenges/search-bar"
 import { getColor } from "@/utilities/tailwind-utilities"
 
@@ -15,6 +16,7 @@ function ChallengePage() {
 				colors={[getColor("yellow"), getColor("olive")]}
 				query="status"
 			/>
+			<DropdownTagInput />
 			<SearchBar />
 		</div>
 	)

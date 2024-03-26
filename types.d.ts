@@ -1,3 +1,6 @@
+import { decl } from "postcss"
+import { tags } from "./utilities/constants"
+
 declare type User = {
 	_id: string
 	name: string
