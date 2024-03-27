@@ -12,13 +12,15 @@ function MainForm() {
 	const { loadUserFromCredentials } = useAuthentication()
 
 	async function onSubmit(data: FormData) {
-		signInUser(data)
-			.then((token) => {
-				toast.success("Successfully signed in!")
-				loadUserFromCredentials(token)
-				router.push("/challenges")
-			})
-			.catch((err) => toast.error(err.message))
+		try {
+			const token = await signInUser(data)
+
+			toast.success("Successfully signed in!")
+			loadUserFromCredentials(token)
+			router.push("/challenges")
+		} catch (error) {
+			toast.error((error as Error).message ?? "")
+		}
 	}
 
 	return (

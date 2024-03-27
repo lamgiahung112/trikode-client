@@ -79,6 +79,7 @@ const DropdownSingleInput: FC<DropdownSingleInputProps> = (
 					<div className="absolute z-[100] top-[48px] left-0 flex flex-col p-2 w-full md:max-w-[200px] bg-neutral-700 rounded-md transition">
 						{props.values.map((v, idx) => (
 							<div
+								key={v}
 								onClick={() => onClickOption(v)}
 								className="flex justify-between hover:bg-neutral-600 px-2 py-1 rounded-md cursor-pointer"
 							>

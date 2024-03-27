@@ -1,31 +1,37 @@
 "use client"
 
-import { useAuthentication } from "@/contexts/authentication-context"
+import { tags } from "@/utilities/constants"
 import Image from "next/image"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"
 import { twMerge } from "tailwind-merge"
+import MinimalTagDisplay from "./minimal-tag-display"
 
 const DropdownTagInput = () => {
 	const [isOpen, setIsOpen] = useState(false)
-	const { user } = useAuthentication()
 	const params = useSearchParams()
 	const pathname = usePathname()
 	const router = useRouter()
+
+	const allCurrentTags = params.getAll("tags")
 
 	const toggle = () => {
 		setIsOpen(!isOpen)
 	}
 
-	const onClickOption = (value: string) => {
+	const onClickOption = (value: (typeof tags)[number]) => {
 		setIsOpen(false)
 		const currentParams = new URLSearchParams(Array.from(params))
+		console.log(currentParams)
 
-		// if (value !== currentParams.get(props.query)) {
-		// 	currentParams.set(props.query, value)
-		// } else {
-		// 	currentParams.delete(props.query)
-		// }
+		if (allCurrentTags.includes(value)) {
+			currentParams.delete("tags")
+			allCurrentTags
+				.filter((v) => v !== value)
+				.forEach((tag) => currentParams.append("tags", tag))
+		} else {
+			currentParams.append("tags", value)
+		}
 
 		router.push(`${pathname}?${currentParams}`)
 	}
@@ -38,7 +44,9 @@ const DropdownTagInput = () => {
 					"flex relative items-center justify-between w-full md:max-w-[160px] p-2 rounded-md bg-neutral-700 hover:bg-neutral-600 cursor-pointer"
 				)}
 			>
-				<div className={twMerge("text-neutral-400")}>Tags</div>
+				<div className={twMerge("text-neutral-400")}>
+					Tags {allCurrentTags.length > 0 && `(${allCurrentTags.length})`}
+				</div>
 				<div
 					className={twMerge(
 						"h-[20px] w-[20px] transition",
@@ -53,7 +61,18 @@ const DropdownTagInput = () => {
 					/>
 				</div>
 				{isOpen && (
-					<div className="absolute z-[100] top-[48px] left-0 flex flex-col p-2 w-full md:max-w-[200px] bg-neutral-700 rounded-md transition"></div>
+					<div className="flex-wrap absolute z-[100] top-[48px] left-0 flex p-2 w-full md:w-[200px] gap-2 bg-neutral-700 rounded-md transition">
+						{tags.map((t) => {
+							return (
+								<MinimalTagDisplay
+									key={t}
+									onClick={onClickOption}
+									tag={t}
+									active={allCurrentTags.includes(t)}
+								/>
+							)
+						})}
+					</div>
 				)}
 				{isOpen && (
 					<div

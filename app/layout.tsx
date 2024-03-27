@@ -19,7 +19,7 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<AuthenticationContextProvider>
 				<body className={`${figtree.className} h-[100vh] text-white`}>
 					<NavigationBar />

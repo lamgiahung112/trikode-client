@@ -2,7 +2,7 @@ import { SVGSkeleton, Skeleton } from "../skeleton"
 
 function AuthFormSkeleton() {
 	return (
-		<>
+		<div className="h-[calc(100vh-62px)] px-[10%] lg:px-[30%] py-[5%] flex justify-center items-center">
 			<div className="flex flex-col justify-between items-center px-8 py-4 bg-neutral-200 rounded-md h-full w-full text-black">
 				<div className="flex flex-col justify-between items-center px-8 py-4 h-full w-full">
 					<div className="flex flex-col items-center">
@@ -51,7 +51,7 @@ function AuthFormSkeleton() {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	)
 }
 

@@ -50,7 +50,7 @@ const AuthenticationContextProvider = (props: { children: React.ReactNode }) => 
 		if (decryptedData.exp && decryptedData.exp < new Date().getTime() / 1000) {
 			return
 		}
-		console.log("HERE")
+
 		setIsUserLoaded(true)
 		setUser(decryptedData)
 		setCredentials(creds)

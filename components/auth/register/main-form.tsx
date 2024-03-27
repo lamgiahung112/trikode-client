@@ -9,12 +9,13 @@ function MainForm() {
 	const router = useRouter()
 
 	async function onSubmit(data: FormData) {
-		registerUser(data)
-			.then(() => {
-				toast.success("Successfully registered!")
-				router.push("/auth/sign-in")
-			})
-			.catch((err) => toast.error(err.message))
+		try {
+			await registerUser(data)
+			toast.success("Successfully registered!")
+			router.push("/auth/sign-in")
+		} catch (error) {
+			toast.error((error as Error).message ?? "")
+		}
 	}
 
 	return (

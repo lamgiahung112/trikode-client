@@ -1,23 +1,13 @@
-import DropdownSingleInput from "@/components/challenges/dropdown-single-input"
-import DropdownTagInput from "@/components/challenges/dropdown-tag-input"
-import SearchBar from "@/components/challenges/search-bar"
-import { getColor } from "@/utilities/tailwind-utilities"
+import ChallengeFilterSection from "@/components/challenges/challenge-filter-section"
+import ChallengeFilterSectionSkeleton from "@/components/challenges/challenge-filter-section-skeleton"
+import { Suspense } from "react"
 
 function ChallengePage() {
 	return (
-		<div className="flex w-full gap-x-2">
-			<DropdownSingleInput
-				values={["EASY", "MEDIUM", "HARD"]}
-				colors={[getColor("olive"), getColor("yellow"), getColor("red")]}
-				query="difficulty"
-			/>
-			<DropdownSingleInput
-				values={["ATTEMPTED", "SOLVED"]}
-				colors={[getColor("yellow"), getColor("olive")]}
-				query="status"
-			/>
-			<DropdownTagInput />
-			<SearchBar />
+		<div className="flex flex-col w-full gap-y-2">
+			<Suspense fallback={<ChallengeFilterSectionSkeleton />}>
+				<ChallengeFilterSection />
+			</Suspense>
 		</div>
 	)
 }

@@ -4,11 +4,11 @@ import { Suspense } from "react"
 
 function RegisterPage() {
 	return (
-		<div className="h-[calc(100vh-62px)] px-[10%] lg:px-[30%] py-[5%] flex justify-center items-center">
-			<Suspense fallback={<AuthFormSkeleton />}>
+		<Suspense fallback={<AuthFormSkeleton />}>
+			<div className="h-[calc(100vh-62px)] px-[10%] lg:px-[30%] py-[5%] flex justify-center items-center">
 				<RegisterForm />
-			</Suspense>
-		</div>
+			</div>
+		</Suspense>
 	)
 }
 
