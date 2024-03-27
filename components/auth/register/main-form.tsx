@@ -4,9 +4,12 @@ import InputField from "@/components/auth/input-field"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import SubmitButton from "@/components/auth/submit-button"
+import { useAuthentication } from "@/contexts/authentication-context"
+import { useEffect } from "react"
 
 function MainForm() {
 	const router = useRouter()
+	const { isUserLoaded } = useAuthentication()
 
 	async function onSubmit(data: FormData) {
 		try {
@@ -17,6 +20,12 @@ function MainForm() {
 			toast.error((error as Error).message ?? "")
 		}
 	}
+
+	useEffect(() => {
+		if (isUserLoaded) {
+			router.push("/challenges")
+		}
+	}, [isUserLoaded])
 
 	return (
 		<form className="flex flex-col w-full gap-y-6" action={onSubmit}>
