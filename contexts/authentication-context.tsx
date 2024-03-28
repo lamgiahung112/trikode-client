@@ -33,14 +33,14 @@ const useAuthentication = () => {
 }
 
 const AuthenticationContextProvider = (props: { children: React.ReactNode }) => {
-	const [user, setUser] = useState<UserProps | null>()
-	const [credentials, setCredentials] = useState<string | null>()
+	const [user, setUser] = useState<UserProps | null>(null)
+	const [credentials, setCredentials] = useState<string | null>(null)
 	const [isUserLoaded, setIsUserLoaded] = useState(false)
 
 	function logout() {
 		localStorage.removeItem("__auth__")
 		setCredentials(null)
-		setUser({})
+		setUser(null)
 		setIsUserLoaded(true)
 	}
 
