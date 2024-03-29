@@ -1,9 +1,12 @@
-async function verifyUser(token: string) {
+import { getCookie } from "cookies-next"
+
+async function verifyUser() {
+	const token = getCookie("__auth__")
 	return fetch("/api/auth/verify", {
 		method: "GET",
 		headers: {
 			"content-type": "application/json",
-			authorization: token,
+			authorization: `Bearer ${token}`,
 		},
 	})
 		.then((res) => res.json())

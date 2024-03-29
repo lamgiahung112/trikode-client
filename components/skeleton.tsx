@@ -4,7 +4,7 @@ const Skeleton = ({ className }: { className?: string }) => (
 	<div
 		className={twMerge(
 			className,
-			"animate-pulse select-none rounded-md bg-gray-300 leading-none"
+			"animate-pulse select-none rounded-md bg-gray-400 leading-none"
 		)}
 	></div>
 )

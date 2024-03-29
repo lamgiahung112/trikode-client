@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
 import * as jose from "jose"
 import verifyUser from "@/actions/auth/verify"
+import { toast } from "react-toastify"
 
 interface UserProps {
 	id?: string
@@ -15,7 +16,6 @@ interface UserProps {
 interface AuthenticationContextProps {
 	user?: UserProps | null
 	isUserLoaded: boolean
-	credentials?: string | null
 	logout: () => void
 	loadUserFromCredentials: (creds: string) => void
 }
@@ -23,7 +23,6 @@ interface AuthenticationContextProps {
 const AuthenticationContext = createContext<AuthenticationContextProps>({
 	user: null,
 	isUserLoaded: false,
-	credentials: null,
 	logout() {},
 	loadUserFromCredentials(creds) {},
 })
@@ -34,12 +33,10 @@ const useAuthentication = () => {
 
 const AuthenticationContextProvider = (props: { children: React.ReactNode }) => {
 	const [user, setUser] = useState<UserProps | null>(null)
-	const [credentials, setCredentials] = useState<string | null>(null)
 	const [isUserLoaded, setIsUserLoaded] = useState(false)
 
 	function logout() {
 		localStorage.removeItem("__auth__")
-		setCredentials(null)
 		setUser(null)
 		setIsUserLoaded(true)
 	}
@@ -53,22 +50,25 @@ const AuthenticationContextProvider = (props: { children: React.ReactNode }) => 
 
 		setIsUserLoaded(true)
 		setUser(decryptedData)
-		setCredentials(creds)
 		localStorage.setItem("__auth__", creds)
 	}
 
 	useEffect(() => {
 		const localToken = localStorage.getItem("__auth__")
 		if (!isUserLoaded && localToken) {
-			verifyUser("Bearer " + localToken).then(() => {
-				loadUserFromCredentials(localToken)
-			})
+			verifyUser()
+				.then(() => {
+					loadUserFromCredentials(localToken)
+				})
+				.catch((e) => {
+					console.log("Invalid credentials or not logged in")
+				})
 		}
 	}, [])
 
 	return (
 		<AuthenticationContext.Provider
-			value={{ user, isUserLoaded, credentials, logout, loadUserFromCredentials }}
+			value={{ user, isUserLoaded, logout, loadUserFromCredentials }}
 		>
 			{props.children}
 		</AuthenticationContext.Provider>

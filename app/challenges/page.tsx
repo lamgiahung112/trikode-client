@@ -1,6 +1,6 @@
 import ChallengeFilterSection from "@/components/challenges/challenge-filter-section"
 import ChallengeFilterSectionSkeleton from "@/components/challenges/challenge-filter-section-skeleton"
-import ChallengeTable from "@/components/challenges/challenge-table"
+import ChallengeTable from "@/components/challenges/table"
 import SelectedFilterSection from "@/components/challenges/selected-filter-section"
 import { Suspense } from "react"
 

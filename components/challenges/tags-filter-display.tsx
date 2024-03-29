@@ -29,7 +29,10 @@ function TagsFilterDisplay() {
 		<>
 			{currentTags.map((tag) => {
 				return (
-					<div className="inline-flex items-center gap-x-2 text-xs px-2 py-1 rounded-full text-neutral-300 bg-neutral-700">
+					<div
+						key={tag}
+						className="inline-flex items-center gap-x-2 text-xs px-2 py-1 rounded-full text-neutral-300 bg-neutral-700"
+					>
 						{formatEnum(tag)}
 						<Image
 							className="cursor-pointer"

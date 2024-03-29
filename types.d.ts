@@ -10,3 +10,16 @@ declare type User = {
 	nickname: string
 	role: "USER" | "ADMIN"
 }
+
+declare type Difficulty = "EASY" | "MEDIUM" | "HARD"
+
+declare type Challenge = {
+	title: string
+	difficulty: Difficulty
+	tags: Tag[]
+	challengeDetails: string
+	createdAt: number // long
+	submissionCount: number
+	acceptanceCount: number
+	likeCount: number
+}

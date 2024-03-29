@@ -1,5 +1,4 @@
 "use client"
-import registerUser from "@/actions/auth/register"
 import InputField from "@/components/auth/input-field"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
