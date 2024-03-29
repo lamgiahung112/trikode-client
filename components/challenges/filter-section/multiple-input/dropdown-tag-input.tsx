@@ -5,7 +5,7 @@ import Image from "next/image"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"
 import { twMerge } from "tailwind-merge"
-import MinimalTagDisplay from "./minimal-tag-display"
+import MinimalTagDisplay from "../selected-filter-display/minimal-tag-display"
 
 const DropdownTagInput = () => {
 	const [isOpen, setIsOpen] = useState(false)

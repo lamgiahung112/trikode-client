@@ -1,6 +1,6 @@
 import { getColor } from "@/utilities/tailwind-utilities"
-import DropdownSingleInput from "./dropdown-single-input"
-import DropdownTagInput from "./dropdown-tag-input"
+import DropdownSingleInput from "./single-input"
+import DropdownTagInput from "./multiple-input/dropdown-tag-input"
 import SearchBar from "./search-bar"
 
 function ChallengeFilterSection() {

@@ -1,7 +1,7 @@
-import ChallengeFilterSection from "@/components/challenges/challenge-filter-section"
-import ChallengeFilterSectionSkeleton from "@/components/challenges/challenge-filter-section-skeleton"
+import ChallengeFilterSection from "@/components/challenges/filter-section"
+import ChallengeFilterSectionSkeleton from "@/components/challenges/filter-section/filter-skeleton"
 import ChallengeTable from "@/components/challenges/table"
-import SelectedFilterSection from "@/components/challenges/selected-filter-section"
+import SelectedFilterSection from "@/components/challenges/filter-section/selected-filter-display"
 import { Suspense } from "react"
 
 function ChallengePage() {
