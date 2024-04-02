@@ -6,7 +6,7 @@ import { Suspense } from "react"
 
 function ChallengePage() {
 	return (
-		<div className="flex flex-col w-full gap-y-4">
+		<div className="flex flex-col w-full gap-y-4 px-[15%] py-[5%]">
 			<Suspense fallback={<ChallengeFilterSectionSkeleton />}>
 				<ChallengeFilterSection />
 				<SelectedFilterSection />

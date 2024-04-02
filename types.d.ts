@@ -1,5 +1,5 @@
 import { decl } from "postcss"
-import { tags } from "./utilities/constants"
+import { difficulties, tags, user_challenge_progress_status } from "./utilities/constants"
 
 declare type User = {
 	_id: string
@@ -11,7 +11,8 @@ declare type User = {
 	role: "USER" | "ADMIN"
 }
 
-declare type Difficulty = "EASY" | "MEDIUM" | "HARD"
+declare type Difficulty = (typeof difficulties)[number]
+declare type UserChallengeProgressStatus = (typeof user_challenge_progress_status)[number]
 
 declare type Challenge = {
 	title: string
@@ -23,3 +24,7 @@ declare type Challenge = {
 	acceptanceCount: number
 	likeCount: number
 }
+
+declare type FilteredChallenge = {
+	status?: UserChallengeProgressStatus
+} & Challenge

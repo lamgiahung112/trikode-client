@@ -3,6 +3,8 @@ import { tags } from "@/utilities/constants"
 import { getCookie } from "cookies-next"
 
 export default async function filterChallenges(params: {
+	page: number
+	pageSize: number
 	difficulty?: "EASY" | "MEDIUM" | "HARD"
 	title?: string
 	tags?: (typeof tags)[number][]
@@ -20,7 +22,10 @@ export default async function filterChallenges(params: {
 	await delay()
 
 	// normalize params
-	const parsedUrlParams: string[] = []
+	const parsedUrlParams: string[] = [
+		`page=${params.page}`,
+		`pageSize=${params.pageSize}`,
+	]
 
 	params.difficulty && parsedUrlParams.push(`difficulty=${params.difficulty}`)
 	params.status && parsedUrlParams.push(`status=${params.status}`)

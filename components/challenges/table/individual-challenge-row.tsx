@@ -1,18 +1,18 @@
-import { Challenge } from "@/types"
+import { Challenge, FilteredChallenge } from "@/types"
 import { formatEnum } from "@/utilities/format-text"
 import Link from "next/link"
 import { twMerge } from "tailwind-merge"
 
 interface IndividualChallengeRowProps {
-	data: Challenge
+	data: FilteredChallenge
 }
 
 function IndividualChallengeRow({
-	data: { title, difficulty, acceptanceCount, submissionCount },
+	data: { title, difficulty, acceptanceCount, submissionCount, status },
 }: IndividualChallengeRowProps) {
 	return (
 		<div className="flex px-2 py-4 text-sm text-neutral-400 font-medium">
-			<div className="flex-[1]">Status</div>
+			<div className="flex-[1]">{status ?? ""}</div>
 			<Link
 				href={`/challenges/${title}`}
 				className="flex-[3] text-white hover:text-blue-400 cursor-pointer"

@@ -29,6 +29,8 @@ function Content() {
 				: undefined,
 			tags: params.getAll("tags") as (typeof tags)[number][] | undefined,
 			title: params.get("title") as string | undefined,
+			page: 1,
+			pageSize: 5,
 		})
 			.then((v) => setChallenges(v))
 			.then(() => setIsLoading(false))
@@ -41,6 +43,8 @@ function Content() {
 		<>
 			{isLoading && <ContentSkeleton />}
 			{!isLoading &&
+				challenges &&
+				challenges.length > 0 &&
 				challenges.map((challenge) => (
 					<IndividualChallengeRow key={challenge.title} data={challenge} />
 				))}

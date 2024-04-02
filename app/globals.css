@@ -32,3 +32,39 @@
   width: 100%;
   bottom: 0;
 }
+
+.gutter:hover {
+  background-color: rgb(96, 165, 250);
+  cursor: col-resize;
+}
+
+.gutter {
+  margin-left: 6px;
+  margin-right: 6px;
+  border-radius: 9999px;
+}
+
+/* Track */
+::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar handle on hover */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+}
+
+/* Handle on scrollbar track */
+::-webkit-scrollbar-track:hover {
+  background: #d4d4d4; /* Color of the scrollbar track on hover */
+}
