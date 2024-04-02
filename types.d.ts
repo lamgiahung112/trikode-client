@@ -28,3 +28,17 @@ declare type Challenge = {
 declare type FilteredChallenge = {
 	status?: UserChallengeProgressStatus
 } & Challenge
+
+declare type HydratedChallenge = Challenge & {
+	details: {
+		description: string
+		predefinedCode: string
+		exampleTestCases: [
+			{
+				input: string
+				expectedOutput: string
+			}
+		]
+		constraints: Array<string>
+	}
+}

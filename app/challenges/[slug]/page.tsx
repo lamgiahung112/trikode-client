@@ -7,7 +7,7 @@ function Page() {
 	const pathname = usePathname()
 
 	useEffect(() => {
-		router.push(`${pathname}/description`)
+		router.replace(`${pathname}/description`)
 	}, [])
 
 	return <></>
