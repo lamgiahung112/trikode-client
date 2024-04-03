@@ -1,26 +1,17 @@
 import { HydratedChallenge } from "@/types"
+import { getCookie } from "cookies-next"
 
 export default async function getChallengeDetails(
 	title: string
 ): Promise<HydratedChallenge> {
-	function delay() {
-		return new Promise((resolve, reject) => {
-			setTimeout(() => {
-				resolve(null)
-			}, 2000)
-		})
-	}
+	const token = getCookie("__auth__")
 
-	await delay()
-
-	return fetch(
-		`http://localhost:3000/api/challenges/details?titleSlug=${encodeURIComponent(
-			title
-		)}`,
-		{
-			method: "GET",
-		}
-	)
+	return fetch(`http://localhost:3000/api/challenges/details?titleSlug=${title}`, {
+		method: "GET",
+		headers: {
+			authorization: `Bearer ${token}`,
+		},
+	})
 		.then((res) => res.json())
 		.then((res) => res.payload as HydratedChallenge)
 }

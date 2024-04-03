@@ -39,4 +39,5 @@ declare type HydratedChallenge = Challenge & {
 		}[]
 		constraints: Array<string>
 	}
+	status: UserChallengeProgressStatus | null
 }

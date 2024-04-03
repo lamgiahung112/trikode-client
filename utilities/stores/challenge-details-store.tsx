@@ -1,23 +1,25 @@
 import { HydratedChallenge } from "@/types"
 import { createStore } from "@/utilities/store"
 
-type ChallengeDetailsStoreProps = HydratedChallenge & {}
+type ChallengeDetailsStoreProps = {
+	data: HydratedChallenge | null
+	isLoaded: boolean
+	setChallenge(challenge: HydratedChallenge): void
+}
 
 const challengeDetailsStore = createStore<ChallengeDetailsStoreProps>((set) => {
 	return {
-		title: "",
-		tags: [],
-		submissionCount: 0,
-		likeCount: 0,
-		difficulty: "EASY",
-		details: {
-			predefinedCode: "",
-			constraints: [],
-			description: "",
-			exampleTestCases: [],
+		isLoaded: false,
+		data: null,
+		setChallenge(challenge) {
+			set((prev) => {
+				return {
+					...prev,
+					isLoaded: true,
+					data: challenge,
+				}
+			})
 		},
-		acceptanceCount: 0,
-		createdAt: 0,
 	}
 })
 
