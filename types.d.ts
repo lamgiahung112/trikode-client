@@ -13,12 +13,12 @@ declare type User = {
 
 declare type Difficulty = (typeof difficulties)[number]
 declare type UserChallengeProgressStatus = (typeof user_challenge_progress_status)[number]
+declare type Tag = (typeof tags)[number]
 
 declare type Challenge = {
 	title: string
 	difficulty: Difficulty
 	tags: Tag[]
-	challengeDetails: string
 	createdAt: number // long
 	submissionCount: number
 	acceptanceCount: number
@@ -33,12 +33,10 @@ declare type HydratedChallenge = Challenge & {
 	details: {
 		description: string
 		predefinedCode: string
-		exampleTestCases: [
-			{
-				input: string
-				expectedOutput: string
-			}
-		]
+		exampleTestCases: {
+			input: string
+			expectedOutput: string
+		}[]
 		constraints: Array<string>
 	}
 }
