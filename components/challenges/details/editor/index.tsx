@@ -1,4 +1,3 @@
-import Footer from "./footer"
 import Title from "./title"
 import TrikodeEditor from "./trikode-editor"
 
@@ -7,7 +6,6 @@ function EditorSecion() {
 		<div className="flex flex-col rounded-md bg-neutral-800 h-[calc(100vh-60px-64px)] border border-neutral-500">
 			<Title />
 			<TrikodeEditor />
-			<Footer />
 		</div>
 	)
 }

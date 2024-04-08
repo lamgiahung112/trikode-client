@@ -1,5 +1,3 @@
-import { setCookie } from "cookies-next"
-
 async function signInUser(data: FormData) {
 	return fetch("/api/auth/signin", {
 		method: "POST",
@@ -16,7 +14,7 @@ async function signInUser(data: FormData) {
 			if (!res.isSuccess) {
 				throw new Error(res.message)
 			}
-			setCookie("__auth__", res.payload)
+			localStorage.setItem("__auth__", res.payload)
 			return res.payload
 		})
 }

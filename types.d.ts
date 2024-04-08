@@ -16,6 +16,7 @@ declare type UserChallengeProgressStatus = (typeof user_challenge_progress_statu
 declare type Tag = (typeof tags)[number]
 
 declare type Challenge = {
+	_id: string
 	title: string
 	difficulty: Difficulty
 	tags: Tag[]

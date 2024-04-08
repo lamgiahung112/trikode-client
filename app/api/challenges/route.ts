@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
 			request.url.indexOf("?") !== -1
 				? request.url.slice(request.url.indexOf("?") + 1)
 				: ""
-		const res = await fetch(`http://localhost:3001/api/challenge?${queries}`, {
+		const res = await fetch(`http://localhost:3001/api/challenges?${queries}`, {
 			method: "GET",
 			headers: request.headers,
 		})

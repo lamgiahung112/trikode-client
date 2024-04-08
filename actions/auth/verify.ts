@@ -1,7 +1,5 @@
-import { getCookie } from "cookies-next"
-
 async function verifyUser() {
-	const token = getCookie("__auth__")
+	const token = localStorage.getItem("__auth__")
 	return fetch("/api/auth/verify", {
 		method: "GET",
 		headers: {

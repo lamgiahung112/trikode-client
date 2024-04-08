@@ -1,5 +1,6 @@
 import { HydratedChallenge } from "@/types"
 import { createStore } from "@/utilities/store"
+import editorCodeStore from "./editor-code-store"
 
 type ChallengeDetailsStoreProps = {
 	data: HydratedChallenge | null
@@ -12,6 +13,12 @@ const challengeDetailsStore = createStore<ChallengeDetailsStoreProps>((set) => {
 		isLoaded: false,
 		data: null,
 		setChallenge(challenge) {
+			editorCodeStore.setState((prev) => {
+				return {
+					...prev,
+					value: challenge.details.predefinedCode,
+				}
+			})
 			set((prev) => {
 				return {
 					...prev,

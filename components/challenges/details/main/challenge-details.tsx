@@ -14,7 +14,7 @@ function ChallengeDetails() {
 	const { slug } = useParams() as { slug: string }
 
 	useEffect(() => {
-		if (data && slug === data.title && isLoaded) {
+		if (data && slug === encodeURIComponent(data.title) && isLoaded) {
 			return
 		}
 		getChallengeDetails(slug)
@@ -94,12 +94,9 @@ function ChallengeDetails() {
 				<div className="font-semibold">Contraints</div>
 				<div className="list-disc flex-shrink">
 					{data?.details.constraints.map((con) => (
-						<div className="flex gap-x-2">
+						<div className="flex gap-x-2" key={con}>
 							-
-							<li
-								className="inline-flex items-center bg-neutral-700 rounded-md px-2"
-								key={con}
-							>
+							<li className="inline-flex items-center bg-neutral-700 rounded-md px-2">
 								{con}
 							</li>
 						</div>

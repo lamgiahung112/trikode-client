@@ -12,7 +12,6 @@
     "@codemirror/lang-javascript": "^6.2.2",
     "@uiw/codemirror-theme-dracula": "^4.21.25",
     "@uiw/react-codemirror": "^4.21.25",
-    "cookies-next": "^4.1.1",
     "jose": "^5.2.3",
     "next": "14.1.4",
     "react": "^18",

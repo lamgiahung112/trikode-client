@@ -1,6 +1,5 @@
 import { Challenge } from "@/types"
 import { tags } from "@/utilities/constants"
-import { getCookie } from "cookies-next"
 
 export default async function filterChallenges(params: {
 	page: number
@@ -10,7 +9,7 @@ export default async function filterChallenges(params: {
 	tags?: (typeof tags)[number][]
 	status?: "ATTEMPTED" | "SOLVED"
 }): Promise<Challenge[]> {
-	const token = getCookie("__auth__")
+	const token = localStorage.getItem("__auth__")
 	function delay() {
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
