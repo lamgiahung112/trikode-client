@@ -1,29 +1,12 @@
 "use client"
 
-import getChallengeDetails from "@/actions/challenges/getChallengeDetails"
 import { useStore } from "@/utilities/store"
 import challengeDetailsStore from "@/utilities/stores/challenge-details-store"
-import { notFound, useParams } from "next/navigation"
-import { useEffect } from "react"
-import { toast } from "react-toastify"
 import { twMerge } from "tailwind-merge"
 import { formatEnum } from "@/utilities/format-text"
 
 function ChallengeDetails() {
-	const { data, setChallenge, isLoaded } = useStore(challengeDetailsStore)
-	const { slug } = useParams() as { slug: string }
-
-	useEffect(() => {
-		if (data && slug === encodeURIComponent(data.title) && isLoaded) {
-			return
-		}
-		getChallengeDetails(slug)
-			.then(setChallenge)
-			.catch(() => {
-				toast.error("Couldn't find this challenge")
-				notFound()
-			})
-	}, [])
+	const { data, isLoaded } = useStore(challengeDetailsStore)
 
 	if (!isLoaded) {
 		return <div className="flex-[1]">Loading...</div>

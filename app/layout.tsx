@@ -5,6 +5,7 @@ import "react-toastify/ReactToastify.min.css"
 import NavigationBar from "@/components/navigation-bar"
 import { ToastContainer } from "react-toastify"
 import { AuthenticationContextProvider } from "@/contexts/authentication-context"
+import AppModal from "@/components/modals/app-modal"
 
 const figtree = Figtree({ subsets: ["latin"] })
 
@@ -28,6 +29,7 @@ export default function RootLayout({
 						{children}
 					</div>
 				</body>
+				<AppModal />
 			</AuthenticationContextProvider>
 		</html>
 	)

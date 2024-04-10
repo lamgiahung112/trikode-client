@@ -42,3 +42,26 @@ declare type HydratedChallenge = Challenge & {
 	}
 	status: UserChallengeProgressStatus | null
 }
+
+declare type BasicUserSubmission = {
+	_id: string
+	userId: string
+	challengeId: string
+	createdAt: number
+	error: string
+	isPassed: boolean
+	testcasePassedCount: number
+	totalTestCases: number
+	isPending: boolean
+}
+
+declare type TestCaseResult = {
+	isPassed: boolean
+	time: number
+	output: string | Array<number | string>
+}
+
+declare type UserSubmission = BasicUserSubmission & {
+	code: string
+	result: TestCaseResult[]
+}
