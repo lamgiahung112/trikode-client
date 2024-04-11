@@ -88,13 +88,18 @@ function ChallengeDetails() {
 			</div>
 			<div className="flex gap-x-4 items-end">
 				<div className="text-sm text-neutral-400">Accepted</div>
-				<div>0</div>
+				<div>{data?.acceptanceCount}</div>
 				<div className="text-neutral-400">|</div>
 				<div className="text-sm text-neutral-400">Submissions</div>
-				<div>0%</div>
+				<div>{data?.submissionCount}</div>
 				<div className="text-neutral-400">|</div>
 				<div className="text-sm text-neutral-400">Acceptance Rate</div>
-				<div>0%</div>
+				<div>
+					{!data?.submissionCount
+						? 0
+						: (data.acceptanceCount / data.submissionCount).toFixed(2)}
+					%
+				</div>
 			</div>
 		</div>
 	)

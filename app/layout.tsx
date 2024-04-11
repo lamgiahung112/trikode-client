@@ -28,8 +28,8 @@ export default function RootLayout({
 					<div className="w-full min-h-full bg-neutral-900 pt-0 md:pt-[60px]">
 						{children}
 					</div>
+					<AppModal />
 				</body>
-				<AppModal />
 			</AuthenticationContextProvider>
 		</html>
 	)

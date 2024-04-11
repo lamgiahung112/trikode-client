@@ -12,7 +12,15 @@ function IndividualChallengeRow({
 }: IndividualChallengeRowProps) {
 	return (
 		<div className="flex px-2 py-4 text-sm text-neutral-400 font-medium">
-			<div className="flex-[1]">{status ?? ""}</div>
+			<div
+				className={twMerge(
+					"flex-[1]",
+					status === "ATTEMPTED" && "text-[var(--yellow)]",
+					status === "SOLVED" && "text-[var(--olive)]"
+				)}
+			>
+				{status ?? ""}
+			</div>
 			<Link
 				href={`/challenges/${title}`}
 				className="flex-[3] text-white hover:text-blue-400 cursor-pointer"
@@ -20,7 +28,9 @@ function IndividualChallengeRow({
 				{title}
 			</Link>
 			<div className="flex-[1]">
-				{submissionCount === 0 ? "0%" : `${acceptanceCount / submissionCount}%`}
+				{submissionCount === 0
+					? "0%"
+					: `${(acceptanceCount / submissionCount).toFixed(2)}%`}
 			</div>
 			<div
 				className={twMerge(

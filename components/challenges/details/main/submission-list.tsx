@@ -1,12 +1,11 @@
-import AppModal from "@/components/modals/app-modal"
 import { useStore } from "@/utilities/store"
 import challengeDetailsStore from "@/utilities/stores/challenge-details-store"
 import modalStore from "@/utilities/stores/modal-store"
 import submissionListStore from "@/utilities/stores/submission-list-store"
-import { useParams } from "next/navigation"
 import { useCallback, useEffect } from "react"
 import { toast } from "react-toastify"
 import { twMerge } from "tailwind-merge"
+import SubmissionDetails from "./submission-details"
 
 function SubmissionList() {
 	const { data, isLoaded, loadSubmissionList } = useStore(submissionListStore)
@@ -46,10 +45,13 @@ function SubmissionList() {
 
 				return (
 					<div
+						key={submission._id}
 						onClick={() =>
 							openModal({
-								component: <AppModal />,
-								title: "Title",
+								component: (
+									<SubmissionDetails submissionId={submission._id} />
+								),
+								title: "Submission Details",
 							})
 						}
 						className={twMerge(

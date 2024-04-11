@@ -14,7 +14,6 @@ const NavigationBar: FunctionComponent<NavigationBarProps> = () => {
 					<Image src="/leetcode.svg" alt="logo" height={24} width={24} />
 				</Link>
 				<NavigationBarLink href="/challenges" title="Challenges" />
-				<NavigationBarLink href="/profile" title="Profile" />
 			</div>
 			<div className="flex h-[60px] items-center justify-between">
 				<NavigationBarUserLink />
