@@ -35,7 +35,8 @@ function _selfSelector<T, V>(x: T): V {
 function useStore<T, V = T>(store: Store<T>, selector: Selector<T, V> = _selfSelector) {
 	return useSyncExternalStore(
 		store.subscribe,
-		useCallback(() => selector(store.getState()), [store, selector])
+		useCallback(() => selector(store.getState()), [store, selector]),
+		() => selector(store.getState())
 	)
 }
 
