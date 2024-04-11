@@ -31,7 +31,7 @@ export default async function filterChallenges(params: {
 	params.title && parsedUrlParams.push(`title=${params.title}`)
 	params.tags && parsedUrlParams.push(params.tags.map((tag) => `tags=${tag}`).join("&"))
 
-	return fetch(`http://localhost:3000/api/challenges?${parsedUrlParams.join("&")}`, {
+	return fetch(`/api/challenges?${parsedUrlParams.join("&")}`, {
 		method: "GET",
 		headers: {
 			authorization: `Bearer ${token}`,

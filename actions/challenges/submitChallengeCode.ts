@@ -4,7 +4,7 @@ export default async function submitChallengeCode(
 ): Promise<void> {
 	const token = localStorage.getItem("__auth__")
 
-	return fetch(`http://localhost:3000/api/challenges/submit`, {
+	return fetch(`/api/challenges/submit`, {
 		method: "POST",
 		body: JSON.stringify({ challengeId, code }),
 		headers: {

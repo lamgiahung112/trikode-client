@@ -5,7 +5,7 @@ export default async function getUserSubmissions(
 ): Promise<BasicUserSubmission[]> {
 	const token = localStorage.getItem("__auth__")
 
-	return fetch(`http://localhost:3000/api/submissions?challengeId=${challengeId}`, {
+	return fetch(`/api/submissions?challengeId=${challengeId}`, {
 		method: "GET",
 		headers: {
 			authorization: `Bearer ${token}`,

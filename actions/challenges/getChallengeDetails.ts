@@ -5,7 +5,7 @@ export default async function getChallengeDetails(
 ): Promise<HydratedChallenge> {
 	const token = localStorage.getItem("__auth__")
 
-	return fetch(`http://localhost:3000/api/challenges/details?titleSlug=${title}`, {
+	return fetch(`/api/challenges/details?titleSlug=${title}`, {
 		method: "GET",
 		headers: {
 			authorization: `Bearer ${token}`,
