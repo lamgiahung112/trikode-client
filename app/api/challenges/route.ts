@@ -1,3 +1,4 @@
+import { base_url } from "@/utilities/constants"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest) {
@@ -6,7 +7,7 @@ export async function GET(request: NextRequest) {
 			request.url.indexOf("?") !== -1
 				? request.url.slice(request.url.indexOf("?") + 1)
 				: ""
-		const res = await fetch(`http://localhost:3001/api/challenges?${queries}`, {
+		const res = await fetch(`${base_url}/api/challenges?${queries}`, {
 			method: "GET",
 			headers: request.headers,
 		})

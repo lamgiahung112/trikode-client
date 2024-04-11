@@ -1,10 +1,11 @@
+import { base_url } from "@/utilities/constants"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
 	const body = await request.json()
 
 	try {
-		const res = await fetch("http://localhost:3001/api/auth/signin", {
+		const res = await fetch(`${base_url}/api/auth/signin`, {
 			method: "POST",
 			body: JSON.stringify(body),
 			headers: {
