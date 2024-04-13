@@ -10,15 +10,6 @@ export default async function filterChallenges(params: {
 	status?: "ATTEMPTED" | "SOLVED"
 }): Promise<Challenge[]> {
 	const token = localStorage.getItem("__auth__")
-	function delay() {
-		return new Promise((resolve, reject) => {
-			setTimeout(() => {
-				resolve(null)
-			}, 2000)
-		})
-	}
-
-	await delay()
 
 	// normalize params
 	const parsedUrlParams: string[] = [
